@@ -2,10 +2,10 @@ import numpy as np
 
 lookuptable = []
 
-N = float(270)
+N = float(128)
 max_num = float(60)
 A = max_num/2
-frequencies = [1,3,5]
+frequencies = [1]
 
 Fu = float(1830000)
 num_f = float(len(frequencies))
