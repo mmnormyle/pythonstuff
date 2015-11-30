@@ -13,7 +13,7 @@ ser = serial.Serial(
 	bytesize=serial.EIGHTBITS
 )
 
-NUM_DATA = 64
+NUM_DATA = 148
 
 #ser.open()
 ser.isOpen()
