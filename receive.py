@@ -6,17 +6,17 @@ import numpy as np
 
 # configure the serial connections (the parameters differs on the device you are connecting to)
 ser = serial.Serial(
-	port='/dev/ttyACM0',
+	port='COM4',
 	baudrate=9600,
 	parity=serial.PARITY_NONE,
 	stopbits=serial.STOPBITS_ONE,
 	bytesize=serial.EIGHTBITS
 )
 
-NUM_DATA = 148
+NUM_DATA = 128
 
 #ser.open()
-ser.isOpen()
+#ser.isOpen()
 
 ser.flushInput()
 data = []
@@ -28,6 +28,7 @@ while len(data)<NUM_DATA:
 					pass
 				value = struct.unpack('<i', ser.read(4))[0]
 				data.append(value)
+				print "poop"
 
 while len(magnitudedata)<NUM_DATA:
 		if(ser.inWaiting>0) :
@@ -80,8 +81,8 @@ plt.figure(1)
 plt.subplot(211)
 plt.scatter(xPoints, yPoints)
 
-plt.subplot(212)
-plt.scatter(magXPoints, magYPoints)
+#plt.subplot(212)
+#plt.scatter(magXPoints, magYPoints)
 plt.show()
 
 

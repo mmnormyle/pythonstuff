@@ -3,12 +3,11 @@ import matplotlib.pyplot as plt
 
 lookuptable = []
 
-N = float(296)
-max_num = float(60)
+N = float(256)
+max_num = float(64)
 A = max_num/2
 frequencies = [1, 3, 5]
 
-Fu = float(1830000)
 num_f = float(len(frequencies))
 
 for n in range(0, int(N)):
