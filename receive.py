@@ -13,7 +13,7 @@ ser = serial.Serial(
 	bytesize=serial.EIGHTBITS
 )
 
-NUM_DATA = 256
+NUM_DATA = 256 - 32
 #ser.open()
 #ser.isOpen()
 
@@ -27,7 +27,6 @@ while len(data)<NUM_DATA:
 					pass
 				value = struct.unpack('<i', ser.read(4))[0]
 				data.append(value)
-				print "poop"
 
 while len(magnitudedata)<NUM_DATA:
 		if(ser.inWaiting>0) :
@@ -38,10 +37,7 @@ while len(magnitudedata)<NUM_DATA:
 				magnitudedata.append(value)
 
 
-print 'done!'
-
-
-out = np.fft.rfft(data,128)
+out = np.fft.rfft(data,NUM_DATA)
 
 print np.angle(out, deg=True)
 
@@ -66,6 +62,7 @@ SAMPLING_FREQ = 915000
 
 print 'It appeas that, assuming a sampling rate of 915kHz and number of points of ' + str(NUM_DATA) + ' the significant frequencies dectected are: '
 for x in range(0,len(sigfrequencies)):
+	print sigfrequencies[x]
 	frequency = sigfrequencies[x]*SAMPLING_FREQ/NUM_DATA
 	print frequency
 
@@ -80,8 +77,8 @@ plt.figure(1)
 plt.subplot(211)
 plt.scatter(xPoints, yPoints)
 
-#plt.subplot(212)
-#plt.scatter(magXPoints, magYPoints)
+plt.subplot(212)
+plt.scatter(magXPoints, magYPoints)
 plt.show()
 
 

@@ -3,8 +3,8 @@ import matplotlib.pyplot as plt
 
 lookuptable = []
 
-N = float(1024)
-max_num = float(59)
+N = float(64)
+max_num = float(62)
 A = max_num/2
 frequencies = [1]
 
