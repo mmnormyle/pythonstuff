@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 import sys
 
 #number of data point in sample
-N = 148 
+N = 148
 #max value read from MSP432 ADC
 ADC_AMPLITUDE = 16384
 #desired goertzel bins to calculate
@@ -47,7 +47,7 @@ if(len(sys.argv)>1):
                         data.append(value)
 else:
     for x in range(0,N):
-        data.append((ADC_AMPLITUDE/2)*np.sin(2.0*np.pi/N*x) + (ADC_AMPLITUDE/2))        
+        data.append((ADC_AMPLITUDE/2)*np.sin(2.0*np.pi/N*x) + (ADC_AMPLITUDE/2))
 
 
 fixed_coeff = []
@@ -106,7 +106,7 @@ for x in range(0,len(bins)):
             z0 = ((coeff_fixed.numerator*(z1/SHIFT_AMOUNT))*SHIFT_AMOUNT)/coeff_fixed.denominator - z2 + data[x];
             z2 = z1;
             z1 = z0;
-               
+
         fixed_real = (z1*cos_fixed.numerator)/cos_fixed.denominator - z2;
         fixed_imag = (z1*sin_fixed.numerator)/sin_fixed.denominator;
 
@@ -152,13 +152,13 @@ print "};"
 
 print "const int32_t COS_NUM[] = {",
 for x in range(0, len(bins)):
-    print(fixed_cos[x].numerator), 
+    print(fixed_cos[x].numerator),
     if(x!=(len(bins)-1)):
         print(","),
 print "};"
 print "const int32_t COS_DEN[] = {",
 for x in range(0, len(bins)):
-    print(fixed_cos[x].denominator),    
+    print(fixed_cos[x].denominator),
     if(x!=(len(bins)-1)):
         print(","),
 print "};"
@@ -166,7 +166,7 @@ print "};"
 
 print "const int32_t SIN_NUM[] = {",
 for x in range(0, len(bins)):
-    print(fixed_sin[x].numerator),    
+    print(fixed_sin[x].numerator),
     if(x!=(len(bins)-1)):
         print(","),
 print "};"
@@ -179,7 +179,7 @@ print "};"
 
 print "const int32_t COEFF_NUM[] = {",
 for x in range(0, len(bins)):
-    print(fixed_coeff[x].numerator), 
+    print(fixed_coeff[x].numerator),
     if(x!=(len(bins)-1)):
         print(","),
 print "};"
